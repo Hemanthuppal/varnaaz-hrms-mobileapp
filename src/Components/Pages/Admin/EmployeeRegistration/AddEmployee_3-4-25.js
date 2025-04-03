@@ -222,7 +222,7 @@ function AddEmployee() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mobile, setMobile] = useState("");
-  
+  const [passwordError, setPasswordError] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedManager, setSelectedManager] = useState("");
   const [managerData, setManagerData] = useState([]);
@@ -269,7 +269,7 @@ function AddEmployee() {
     if (
       fullName &&
       email &&
- 
+      password &&
       mobile &&
       selectedRole &&
       location.lat &&
@@ -278,7 +278,14 @@ function AddEmployee() {
       project // Ensure Project is filled
     ) {
       if (emailRegex.test(email)) {
-       
+        if (password.length >= 6) {
+          setErrorMsg("");
+          setPasswordError("");
+          setFormValid(true);
+          return;
+        } else {
+          setPasswordError("Minimum 6 characters required for the password.");
+        }
       } else {
         setErrorMsg("Please enter a valid email address.");
       }
@@ -298,7 +305,7 @@ function AddEmployee() {
   }, [
     fullName,
     email,
-   
+    password,
     mobile,
     selectedRole,
     selectedDepartment,
@@ -455,96 +462,73 @@ function AddEmployee() {
     setIsSubmitting(true);
 
     try {
-        // Generate password: First letter capital, rest small, + last name + "@123"
-        const nameParts = fullName.trim().split(" ");
-        const firstName = nameParts[0];
-        const lastName = nameParts.length > 1 ? nameParts.slice(1).join("") : "";
-        const newPassword = `${firstName.charAt(0).toUpperCase()}${firstName.slice(1).toLowerCase()}${lastName.toLowerCase()}@123`;
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-        const userCredential = await createUserWithEmailAndPassword(auth, email, newPassword);
-        const user = userCredential.user;
+      // Update the user's display name
+      await updateProfile(user, { displayName: fullName });
 
-        // Update the user's display name
-        await updateProfile(user, { displayName: fullName });
+      // Find the manager data and assign manager UID if available
+      const selectedManagerData = managerData.find(manager => manager.fullName === selectedManager);
+      const assignedManagerUid = selectedManagerData ? selectedManagerData.uid : "";
 
-        // Find the manager data and assign manager UID if available
-        const selectedManagerData = managerData.find(manager => manager.fullName === selectedManager);
-        const assignedManagerUid = selectedManagerData ? selectedManagerData.uid : "";
+      // If a new photo is selected, upload it; otherwise, use the existing photo URL
+      const finalPhotoUrl = photo ? await handleFileUpload(photo, "photos") : photoUrl; // Use new photo or existing one
+      const finalResumeUrl = resume ? await handleFileUpload(resume, "resumes") : resumeUrl;
+      const finalOfferletterUrl = offerletter ? await handleFileUpload(offerletter, "offerletters") : offerletterUrl;
 
-        // If a new photo is selected, upload it; otherwise, use the existing photo URL
-        const finalPhotoUrl = photo ? await handleFileUpload(photo, "photos") : photoUrl;
-        const finalResumeUrl = resume ? await handleFileUpload(resume, "resumes") : resumeUrl;
-        const finalOfferletterUrl = offerletter ? await handleFileUpload(offerletter, "offerletters") : offerletterUrl;
+      // Add user data to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        fullName,
+        email,
+        mobile,
+        role: selectedRole,
+        employeeUid: user.uid,
+        assignedManager: selectedManager,
+        department: selectedDepartment,
+        assignedManagerUid,
+        employeeId,
+        timestamp: Timestamp.fromDate(new Date()),
+        education,
+        specialisation,
 
-        // Add user data to Firestore
-        await setDoc(doc(db, "users", user.uid), {
-            fullName,
-            email,
-            mobile,
-            role: selectedRole,
-            employeeUid: user.uid,
-            assignedManager: selectedManager,
-            department: selectedDepartment,
-            assignedManagerUid,
-            employeeId,
-            timestamp: Timestamp.fromDate(new Date()),
-            education,
-            specialisation,
-            resume: finalResumeUrl,
-            fatherName,
-            dob,
-            gender,
-            photo: finalPhotoUrl,
-            offerletter: finalOfferletterUrl,
-            address,
-            accountHolderName,
-            accountNumber,
-            bank,
-            branch,
-            aadhaarNumber,
-            ifsc,
-            location,
-        });
+        resume: finalResumeUrl,  // Store final resume URL
+        fatherName,
+        dob,
+        gender,
+        photo: finalPhotoUrl,  // Store final photo URL (newly uploaded or fetched one)
+        offerletter: finalOfferletterUrl,  // Store final offer letter URL
+        timestamp: Timestamp.fromDate(new Date()),
+        address,
+        accountHolderName,
+        accountNumber,
+        bank,
+        branch,
+        aadhaarNumber,
+        ifsc,
+        location,  // Store selected location coordinates
+      });
 
-        // Email Payload
-        const emailPayload = {
-            to_email: [user.email],
-            subject: "Your Account Details",
-            message: `
-                <p>Your account has been Registered. Your login credentials are:</p>
-                <p><b>UserName:</b> ${user.email}</p>
-                <p><b>Password:</b> ${newPassword}</p>
-                <p>Login Through this url: "https://varnaaz-hrms.web.app/"</p>
-            `
-        };
+      // Alert success and redirect to employee list
+      window.alert("Registered Successfully!!!");
+      navigate('/a-employeelist');
 
-        // Send credentials via email
-        await fetch('https://saikrishnaapi.vercel.app/send-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(emailPayload),
-        });
-
-        // Alert success and redirect to employee list
-        window.alert("Registered Successfully! Login credentials sent to email.");
-        navigate('/a-employeelist');
-
-        // Reset form after submission
-        resetForm();
+      // Reset form after submission
+      resetForm();
 
     } catch (error) {
-        console.error("Error during signup:", error);
-        setErrorMsg("An error occurred during signup. Please try again.");
-        setIsSubmitting(false);
+      console.error("Error during signup:", error);
+      setErrorMsg("An error occurred during signup. Please try again.");
+      setIsSubmitting(false);
     }
-};
-
+  };
   const resetForm = () => {
     setFullName("");
     setEmail("");
-  
+    setPassword("");
     setMobile("");
-   
+    setPasswordError("");
     setSelectedRole("");
     setSelectedManager("");
     setManagerData([]);
@@ -744,7 +728,20 @@ function AddEmployee() {
                   />
                   {errorMsg && <div className="text-danger">{errorMsg}</div>}
                 </div>
-               
+                <div className="col-md-6 mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  {passwordError && <div className="text-danger">{passwordError}</div>}
+                </div>
               </div>
 
               {/* Phone Number and Photo */}
@@ -859,7 +856,16 @@ function AddEmployee() {
                   )}
                 </div>
 
-                
+                <div className="col-md-6 mb-3">
+                  <label htmlFor="offerletter" className="form-label">Offer Letter</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="offerletter"
+                    onChange={(e) => setOfferletter(e.target.files[0])}
+                    accept=".pdf,.doc,.docx"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -919,7 +925,21 @@ function AddEmployee() {
 
 
 
-                
+                {/* Location Selection */}
+                {/* <div className="col-md-6 mb-3">
+                  <label className="form-label">Location</label>
+                  <div className="d-flex align-items-center">
+                    <Button variant="primary" onClick={() => setIsLocationModalOpen(true)}>
+                      Add Location
+                    </Button>
+                    {location.lat && location.lng && (
+                      <div className="ms-3">
+                        <p className="mb-0"><strong>Lat:</strong> {location.lat.toFixed(6)}</p>
+                        <p className="mb-0"><strong>Lng:</strong> {location.lng.toFixed(6)}</p>
+                      </div>
+                    )}
+                  </div>
+                </div> */}
               </div>
 
               {/* Manager Selection */}
