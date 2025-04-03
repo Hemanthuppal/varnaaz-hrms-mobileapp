@@ -1,0 +1,30 @@
+
+.admin-onboarding-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Content Area */
+  .admin-onboarding-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .admin-onboarding-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+
+
+  @media (max-width: 480px) {
+    .admin-onboarding-content {
+        flex: 1;
+        padding: 20px;
+        margin-top: 40px;
+        margin-left: 10px;
+        transition: margin-left 0.3s ease;
+      }
+  }

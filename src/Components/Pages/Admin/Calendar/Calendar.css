@@ -1,0 +1,51 @@
+.admin-calendar-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .holidayheading{
+    text-align: center;
+  }
+  
+  /* Content Area */
+  .admin-calendar-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .paginationhldy{
+    justify-content: center !important;
+  }
+  
+  .admin-calendar-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+  @media (max-width: 1024px) {
+    .admin-calendar-content {
+        margin-left: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .admin-calendar-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+  
+}
+
+  /* For mobile devices */
+  @media (max-width: 480px) {
+    .admin-calendar-container {
+        padding: 10px;
+    }
+  
+    .admin-calendar-content {
+        padding: 10px;
+        margin-top: 20px;
+       
+    }
+}

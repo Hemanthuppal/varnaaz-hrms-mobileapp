@@ -1,0 +1,183 @@
+/* Base Styles (Desktop and larger screens) */
+.admin-attendance-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-attendance-content {
+  margin-top: 60px; /* Adjust based on header height */
+  margin-left: 200px; /* Adjust based on sidebar width */
+  padding: 20px;
+  width: calc(100% - 220px); /* Adjust width based on sidebar width */
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.admin-attendance-content.collapsed {
+  margin-left: 50px; /* Increased margin when collapsed */
+  width: calc(100% - 70px); /* Adjusted width to account for increased margin */
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  margin-bottom: 20px;
+  margin-left: -306px;
+}
+
+.attendance-heading{
+  text-align: center;
+  margin-top: 7px;
+}
+
+.attendance-search {
+  width: 200px;
+  padding: 10px;
+  border: 2px solid #c7d1e1;
+  border-radius: 7px;
+  outline: none;
+  font-size: 14px;
+  margin-left: 685px;
+  height: 40px;
+  margin-top: 1px;
+  margin-bottom: 0px;
+  color: #9c9c9c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+/* Filter Container */
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.filter-container select {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Tablet View (768px - 1024px) */
+@media (max-width: 1024px) {
+  .admin-attendance-container {
+    flex-direction: column;
+  }
+
+  .admin-attendance-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .admin-attendance-content.collapsed {
+    margin-left: 50px; /* Increased margin to move content right */
+    width: calc(100% - 70px); /* Adjusted width */
+  }
+
+  .attendance-search {
+    width: 100%;
+    margin-left: 0;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .filter-container label {
+    font-size: 13px;
+  }
+
+  .filter-container select {
+    width: auto;
+    font-size: 13px;
+  }
+
+  .filter-container .download-button {
+    margin-left: 15px;
+    width: auto;
+    margin-top: 15px;
+  }
+}
+
+/* Mobile View (Up to 767px) */
+@media (max-width: 767px) {
+  .admin-attendance-container {
+    flex-direction: column;
+  }
+
+  .admin-attendance-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .admin-attendance-content.collapsed {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .attendance-search {
+    width: 100%;
+    margin-left: 0;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter-container label {
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+
+  .filter-container select {
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* Ensure the download button is full width and below the label and select */
+  .filter-container .download-button {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+/* Extra Small Screens (Up to 480px) */
+@media (max-width: 480px) {
+  .admin-attendance-content {
+    padding: 10px;
+  }
+
+  .attendance-search {
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .filter-container label {
+    font-size: 11px;
+  }
+
+  .filter-container select {
+    font-size: 11px;
+  }
+
+  .filter-container .download-button {
+    padding: 8px;
+    margin-top: 15px;
+  }
+}

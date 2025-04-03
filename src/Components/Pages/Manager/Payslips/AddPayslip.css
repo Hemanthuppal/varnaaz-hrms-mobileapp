@@ -1,0 +1,87 @@
+.manager-payslip-content {
+    flex: 1 1;
+    padding: 20px;
+    margin-top: 80px;
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+}
+.manager-payslip-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+
+  .mpayslipheading {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.addpayslipbutton{
+  margin-left: 531px;
+  margin-top: 10px;
+  position: fixed;
+}
+
+.paysliptable{
+  margin-top: 60px;
+}
+.addpaymodal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 130%;
+  margin-top: 125px;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+  margin-left: -15%;
+}
+
+.close-button{
+  margin-left: 444px;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+.addpaymodal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 130%;
+  margin-top: 177px;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+  margin-left: -15%;
+}
+}
+
+@media (max-width: 767px) {
+
+  .close-button {
+    margin-left: 200px;
+}
+  .addpaymodal-content {
+    position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 98%;
+        margin-top: 177px;
+        color: var(--bs-modal-color);
+        pointer-events: auto;
+        background-color: var(--bs-modal-bg);
+        background-clip: padding-box;
+        border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+        border-radius: var(--bs-modal-border-radius);
+        outline: 0;
+        margin-left: 1%;
+  }
+}
+

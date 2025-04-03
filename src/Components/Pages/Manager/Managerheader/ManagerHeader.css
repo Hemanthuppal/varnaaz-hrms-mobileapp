@@ -1,0 +1,43 @@
+/* Navbar List Item Styling */
+.manageremployee_nav-item {
+    list-style: none;
+    background-color: #f8f9fa; /* Light background */
+    border: 2px solid #dee2e6; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    transition: all 0.3s ease;
+    padding: 10px 20px; /* Spacing for button-like appearance */
+  }
+  
+  .manageremployee_nav-item:hover {
+    background-color: #e2e6ea; /* Light hover effect */
+    cursor: pointer;
+  }
+  
+  /* Active State Styling */
+  .manageremployee_nav-item.active {
+    background-color: #007bff; /* Blue background for active state */
+    border-color: #0056b3; /* Darker blue border */
+    color: #fff; /* White text */
+  }
+  
+  .manageremployee_nav-item.active .manageremployee_nav-link {
+    color: #fff; /* Ensure link text is white when active */
+  }
+  
+  .manageremployee_nav-link {
+    text-decoration: none; /* Remove underline */
+    color: #212529; /* Default text color */
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Emphasize text */
+  }
+  
+  .manageremployee_nav-link:hover {
+    color: #0056b3; /* Hover effect for link text */
+  }
+  
+  /* Icon Styling */
+  .nav-icon {
+    font-size: 24px; /* Adjust icon size */
+    margin-bottom: 5px; /* Space between icon and text */
+  }
+  

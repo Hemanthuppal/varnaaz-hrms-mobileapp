@@ -1,0 +1,39 @@
+.manager-attendance-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Content Area */
+  .manager-attendance-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .manager-attendance-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+  .empattendanceheading{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .attendance-table {
+    overflow-x: scroll;
+}
+
+  @media (max-width: 767px) {
+  .manager-attendance-content {
+    flex: 1 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 15px;
+    transition: margin-left 0.3s ease;
+}
+.manager-attendance-content.collapsed {
+  margin-left: 25px;
+}
+  }

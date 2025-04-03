@@ -1,0 +1,34 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .calendar-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+    width: calc(90% - 50px);
+    transition: margin-left 0.3s ease, width 0.3s ease;
+  }
+  
+  .calendar-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+    /* margin-left: 50px; */
+  
+    width: calc(100% - 70px);
+  }
+
+
+  @media (max-width: 767px) {
+    .calendar-content {
+      padding: 10px;
+    }
+    .custom-modal-width {
+      width: 90%;
+   justify-content: center;
+    }
+
+}

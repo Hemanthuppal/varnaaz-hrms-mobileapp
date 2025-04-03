@@ -1,0 +1,66 @@
+
+.admin-viewonboard-container {
+  display: flex;
+  flex-direction: row;
+  }
+  
+  /* Content Area */
+  .admin-viewonboard-content {
+    margin-top: 60px; /* Adjust based on header height */
+  margin-left: 190px; /* Adjust based on sidebar width */
+  padding: 20px;
+  width: calc(100% - 220px); /* Adjust width based on sidebar width */
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  }
+  
+  .admin-viewonboard-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+
+
+  /* Styles for the first modal (custom-skill-modal) */
+.custom-skill-modal .modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-skill-modal .modal-body {
+  color: #333;
+  font-size: 16px;
+}
+
+
+
+@media (max-width: 480px) {
+  .admin-viewonboard-content {
+      flex: 1;
+      padding: 20px;
+      margin-top: 40px;
+      margin-left: 10px;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
+}
+
+@media (max-width: 767px) {
+  .admin-viewonboard-container {
+    flex-direction: column;
+  }
+
+  .admin-viewonboard-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .admin-viewonboard-content.collapsed {
+    margin-left: 40px; /* Adjust this value as needed */
+    width: calc(100% - 40px); /* Adjust width based on the margin-left */
+  }
+
+  /* Ensuring that each input field takes full width in mobile view */
+  .row > .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+

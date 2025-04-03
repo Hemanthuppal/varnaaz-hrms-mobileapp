@@ -1,0 +1,76 @@
+.profile-picture, .default-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.default-profile-icon {
+    font-size: 40px; /* Ensure the icon size matches the profile picture */
+    color: #aaa; /* Optional: change the color of the icon */
+}
+
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-icon1 {
+    display: inline-block;
+    /* padding: 10px; */
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-icon1.active {
+    background-color: #002855; /* Set the active background color (matching the color in the image) */
+    color: #fff; /* Optional: Change the icon color when active */
+}
+
+
+.nav-icon1.inactive {
+    color: #333; /* Change to your desired inactive color */
+}
+
+.Profile-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: -11px;
+    margin-top: 5px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease; /* Smooth transition for hover background */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f1f1f1; /* Background color when hovered or focused */
+}
+
+
+
+
+/* Profile.css */
+.profile-picture {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -1,0 +1,72 @@
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Content Area */
+  .admin-content {
+    flex: 1;
+    padding: 20px;
+    /* margin-top: 10px; */
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .admin-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+  }
+  
+  .bankcard,
+  .educationcard,
+  .accountcard,
+  .personalcard {
+    margin-top: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .submit_button {
+    margin-left: 620px;
+  }
+  
+  .heading {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  @media (max-width: 767px) {
+    .submit_button {
+      margin-left: 160px;
+    }
+  
+    .personalcard,
+    .educationcard,
+    .accountcard,
+    .bankcard {
+      width: 95%;
+      margin-left: 10px;
+    }
+  
+    .admin-content {
+      margin-left: 0;
+      padding: 10px;
+    }
+  
+    .heading {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .submit_button {
+      margin-left: 320px;
+    }
+  
+    .admin-content {
+      margin-left: 160px;
+      padding: 15px;
+    }
+  }
+  

@@ -1,0 +1,61 @@
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.calendar-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: 40px;
+  margin-left: 220px;
+  transition: margin-left 0.3s ease;
+  width: calc(90% - 50px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.calendar-content.collapsed {
+  margin-left: 60px; /* Adjust based on sidebar width */
+  width: calc(100% - 70px);
+}
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+  .calendar-container {
+    padding: 10px;
+  }
+
+  .calendar-content {
+    margin-left: 0;
+    padding: 10px;
+    width: 100%; /* Full width for mobile view */
+  }
+
+  .calendar-content.collapsed {
+    margin-left: 40px; /* Give a small margin-left when sidebar is collapsed */
+    width: calc(100% - 40px); /* Adjust width accordingly */
+  }
+
+  .custom-modal-width {
+    width: 90%; /* Make modal wider on mobile screens */
+    justify-content: center;
+  }
+
+  .calendar-container h2 {
+    font-size: 18px; /* Adjust header size for smaller screens */
+    text-align: center;
+  }
+
+  .rbc-calendar {
+    font-size: 12px; /* Reduce calendar font size for better readability */
+  }
+
+  .rbc-toolbar button {
+    padding: 5px 10px; /* Smaller buttons in the calendar */
+    font-size: 12px;
+  }
+
+  .rbc-month-view {
+    min-height: 400px; /* Ensure a reasonable height on smaller screens */
+  }
+}

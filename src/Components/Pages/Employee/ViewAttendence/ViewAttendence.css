@@ -1,0 +1,238 @@
+.view-attendance-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+.view-attendance-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 220px;
+    /* transition: margin-left 0.3s ease; */
+   
+    width: calc(90% - 50px);
+    transition: margin-left 0.3s ease, width 0.3s ease;
+  }
+
+  .view-attendance-content.collapsed {
+    margin-left: 60px; /* Adjust based on sidebar width */
+    /* margin-left: 50px; */
+  
+    width: calc(100% - 70px);
+  }
+
+  .veiw-attendance-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+
+  
+
+  @media (max-width: 767px) {
+    .view-attendance-container {
+        padding: 10px;
+    }
+    .navigation-buttons1{
+      margin-left: 0px;
+    }
+
+    .view-attendance-content {
+      padding: 10px;
+      margin-top: 60px;
+      margin-left: 3px;
+      width: 100%;
+    }
+    .view-attendance-content.collapsed {
+      margin-left: 45px;
+      width: calc(107% - 70px);
+  }
+
+    .Attendance-teacher-pagination{
+      text-align: center;
+  }
+  
+  .Attendance-teacher-pagination li {
+      margin: 0 -2px;
+      cursor: pointer;
+  }
+  
+}
+  
+  .td{
+   
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  
+  
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+  .view-attendance-content {
+    flex: 1 1;
+      padding: 20px;
+      margin-top: 40px;
+      margin-left: 200px;
+      /* transition: margin-left 0.3s ease; */
+      width: calc(82% - 50px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+  }
+
+
+
+
+
+
+  /* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Button Styling */
+.view-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-btn:hover {
+  background-color: #45a049;
+}
+
+/* The Modal (background) */
+.modal-view-atten {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay background */
+  animation: fadeIn 0.4s ease; /* Fade in animation */
+}
+
+/* Modal Content */
+.modal-content-view-atten {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: auto;
+  max-width: 80%;
+    margin-left:255px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  animation: slideIn 0.5s ease; /* Slide in animation */
+}
+
+/* Modal Heading */
+.modal-content-view-atten h2 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Modal Paragraph */
+.modal-content-view-atten p {
+  font-size: 16px;
+  text-align: center;
+  color: #333;
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  margin-top: -10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateY(-50px);
+  }
+  to {
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+
+/* Tablet Styles */
+@media (max-width: 768px) {
+  .modal-content-view-atten {
+      width: 60%; /* Increase width for medium screens */
+      padding: 15px;
+  }
+
+  .modal-content-view-atten h2 {
+      font-size: 20px;
+  }
+
+  .modal-content-view-atten p {
+      font-size: 14px;
+  }
+
+  .close {
+      font-size: 24px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+  .modal-content-view-atten {
+      width: 80%; /* Wider modal for small screens */
+      padding: 10px;
+  }
+
+  .modal-content-view-atten h2 {
+      font-size: 18px;
+  }
+
+  .modal-content-view-atten p {
+      font-size: 12px;
+  }
+
+  .view-btn {
+      font-size: 14px;
+      padding: 8px 16px; /* Adjust button size for mobile */
+  }
+
+  .close {
+      font-size: 22px;
+  }
+}

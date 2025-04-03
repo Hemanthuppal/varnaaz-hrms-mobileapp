@@ -1,0 +1,183 @@
+/* Header Styles */
+
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure header stays above sidebar */
+}
+
+.admin-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.admin-sidebar-toggle {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.Admin-company-logo {
+  height: 55px;
+  margin-left: 10px;
+  width: 140px;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  margin-left: auto; 
+}
+
+/* Sidebar Styles */
+.admin-sidebar {
+  position: fixed;
+  top: 60px; /* Adjust based on header height */
+  left: 0;
+  bottom: 0;
+  background-color: rgb(208, 209, 215);
+  color: #464343;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  padding-top: 20px;
+  width: 220px;
+  z-index: 999; /* Ensure sidebar is behind header */
+}
+
+.admin-sidebar.collapsed {
+  width: 50px;
+}
+
+.admin-position-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.admin-nav-item {
+  list-style: none;
+}
+
+.admin-nav-item .nav-link {
+  display: flex;
+  align-items: center;
+  color: #464343;
+  text-decoration: none;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-nav-item .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-nav-icon {
+  margin-right: 10px;
+}
+
+.link_text {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  color: #000;
+}
+
+.admin-nav-item.active .nav-link {
+  background-color: #f0f0f0;
+}
+
+
+
+/* Header Styles */
+.admin-header {
+  position: fixed;
+  top: 0;
+  width: 100%; /* Use full width for the header */
+  height: 60px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 101; /* Ensure the header is above the sidebar */
+}
+
+.admin-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.admin-company-logo {
+  height: 40px;
+  margin-left: 15px;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #333;
+}
+
+.logout-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Sidebar toggle icon inside the header */
+.admin-sidebar-toggle {
+  cursor: pointer;
+  font-size: 24px;
+  color: #0a98d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.toggle-icon {
+  font-size: 24px;
+}
+
+/* Make sure sidebar doesn't overlap the header */
+.sidebar {
+  margin-top: 60px; /* Offset the sidebar below the fixed header */
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .admin-sidebar {
+    display: none;
+  }
+  
+  .admin-sidebar.collapsed {
+    display: block;
+    width: 50px; 
+  }
+
+  .admin-sidebar.collapsed .admin-nav-link .link_text {
+    display: block; /* Show text when sidebar is expanded */
+  }
+
+  .admin-sidebar .nav-link .link_text {
+    display: none; /* Hide text when sidebar is collapsed */
+  }
+  
+}

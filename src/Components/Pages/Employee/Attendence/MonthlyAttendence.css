@@ -1,0 +1,84 @@
+.manager-MonthlyAttendence {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  
+  /* Content Area */
+  .manager-MonthlyAttendence1 {
+    flex: 1;
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: 220px;
+    /* transition: margin-left 0.3s ease; */
+  
+    width: calc(90% - 50px);
+    transition: margin-left 0.3s ease, width 0.3s ease;
+  }
+  
+  .manager-MonthlyAttendence1.collapsed {
+    margin-left: 60px;
+    /* Adjust based on sidebar width */
+    /* margin-left: 50px; */
+  
+    width: calc(100% - 70px);
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .manager-MonthlyAttendence1 {
+      margin-left: 220px;
+    }
+  
+    .manager-MonthlyAttendence1.collapsed {
+      margin-left: 60px;
+      /* margin-left: 50px; */
+      width: calc(100% - 70px);
+      margin-top: 65px;
+    }
+  
+    .manager-MonthlyAttendence1 {
+      flex: 1 1;
+      padding: 20px;
+      margin-top: 65px;
+      margin-left: 196px;
+      /* transition: margin-left 0.3s ease; */
+      width: calc(82% - 50px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+  }
+  
+  
+  /* For mobile devices */
+  @media (max-width: 767px) {
+    .manager-MonthlyAttendence {
+      padding: 10px;
+    }
+  
+    .manager-MonthlyAttendence1 {
+      padding: 10px;
+      margin-top: 65px;
+      margin-left: 10px;
+    }
+  
+    .manager-MonthlyAttendence1 {
+      flex: 1 1;
+      padding: 20px;
+      margin-top: 65px;
+      margin-left: 0px;
+      /* transition: margin-left 0.3s ease; */
+      width: calc(115% - 50px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+  
+    .manager-MonthlyAttendence1.collapsed {
+      margin-left: 29px;
+      width: calc(113% - 70px);
+    }
+  
+    .export-button {
+      padding: 4px;
+      margin-left: 5px;
+    }
+  
+  }

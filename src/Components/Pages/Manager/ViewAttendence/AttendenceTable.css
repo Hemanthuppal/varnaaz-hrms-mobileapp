@@ -1,0 +1,35 @@
+.attendance-heading{
+    text-align: center;
+    margin-left: -8px;
+
+}
+
+.attendancetable-heading{
+    text-align: center;
+    margin-left: 10px;
+}
+
+.pagination{
+    margin-left: 4px;
+}
+
+@media (max-width: 380px) {
+
+.attendance-heading {
+    text-align: center;
+    margin-left: -8px;
+    font-size: 22px;
+}
+
+.attendancetable-heading{
+    text-align: center;
+    margin-left: 10px;
+    font-size: 22px;
+}
+
+
+.pagination{
+    margin-left: 14px;
+    margin-top: 10px;
+}
+}

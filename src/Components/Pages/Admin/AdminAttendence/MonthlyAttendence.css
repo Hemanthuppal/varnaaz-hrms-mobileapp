@@ -1,0 +1,102 @@
+.monthlyattendance-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Content Area */
+.monthlyattendance-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: 40px;
+  margin-left: 190px;
+  transition: margin-left 0.3s ease;
+}
+
+.monthlyattendance-content.collapsed {
+  margin-left: 60px; /* Adjust based on sidebar width */
+}
+
+/* Base styles for desktop and tablet */
+.monthly-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.monthly-filter-container label {
+  margin-right: 10px;
+}
+
+.filter-select,
+.filter-month {
+  padding: 8px 12px;
+  font-size: 14px;
+  width: auto; /* Auto width for larger screens */
+}
+
+/* Button styles */
+.download-btn {
+  padding: 8px 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .monthlyattendance-content {
+      margin-left: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .monthlyattendance-content {
+      margin-left: 0;
+      padding: 15px;
+  }
+  .monthly-filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Ensure role and month input are in one line */
+  .monthly-filter-container label,
+  .monthly-filter-container select,
+  .monthly-filter-container input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Ensure button is on the next line */
+  .download-btn {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .monthlyattendance-container {
+      padding: 10px;
+  }
+
+  .monthlyattendance-content {
+      padding: 10px;
+      margin-top: 20px;
+  }
+  .filter-select,
+  .filter-month {
+    font-size: 12px;
+    padding: 6px 8px;
+    width: 50%; /* Full width for small screens */
+  }
+
+  .download-btn {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+  }
+  
+  
+}
