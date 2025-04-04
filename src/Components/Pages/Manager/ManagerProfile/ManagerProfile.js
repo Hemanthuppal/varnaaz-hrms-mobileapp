@@ -437,11 +437,15 @@ function EmployeeDetails() {
       <div className={`manager-profile-content ${collapsed ? 'collapsed' : ''}`}>
         <div className='managerprofile-container'>
           <div className='managerprofile-header'>
-            <img
-              src={employeeData.photo}
-              alt="Employee"
-              className='managerprofile-photo'
-            />
+            {employeeData.photo ? (
+              <img
+                src={employeeData.photo}
+                alt="Employee"
+                className='managerprofile-photo'
+              />
+            ) : (
+              <div className='managerprofile-photo-placeholder'>No Photo</div>
+            )}
             <div>
               <h2 className='managerprofile-name'>{employeeData.fullName}</h2>
               <p className='managerprofile-role'>{employeeData.role}</p>
@@ -535,12 +539,12 @@ function EditableSection({
       )}
 
       {fields.map((field) => {
-        const labelWidth = 250;
         const inputStyles = {
           marginLeft: '10px',
           marginTop: editMode ? '10px' : '0',
         };
 
+        // File upload fields (resume, offer letter, photo)
         if (editMode && (field === 'resume' || field === 'offerLetter')) {
           return (
             <div key={field} className='input-group'>
@@ -558,22 +562,41 @@ function EditableSection({
           return (
             <div key={field} className='input-group'>
               <strong className='label'>Profile Photo:</strong>
-              <input className='input' type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'photo')} style={inputStyles} />
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={(e) => handleFileChange(e, 'photo')} 
+                style={inputStyles} 
+              />
             </div>
           );
-        } else if (editMode) {
+        } else if (field === 'photo') {
           return (
-            <div key={field} className='input-group'>
+            <p key={field} className='input-group'>
+              <strong className='label'>Profile Photo:</strong>
+              {data.photo ? (
+                <a href="#" onClick={() => viewFile(data.photo)} style={{textDecoration:'none'}}>
+                  View Photo
+                </a>
+              ) : (
+                'Not uploaded'
+              )}
+            </p>
+          );
+        } else if (field === 'resume' || field === 'offerLetter') {
+          return (
+            <p key={field} className='input-group'>
               <strong className='label'>
                 {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
               </strong>
-              <input
-                type="text"
-                value={data[field] || ''}
-                onChange={(e) => handleChange(e, field)}
-                style={inputStyles}
-              />
-            </div>
+              {data[field] ? (
+                <a href="#" onClick={() => viewFile(data[field])} style={{textDecoration:'none'}}>
+                  View {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}
+                </a>
+              ) : (
+                'Not uploaded'
+              )}
+            </p>
           );
         } else {
           return (
@@ -581,21 +604,7 @@ function EditableSection({
               <strong className='label'>
                 {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
               </strong>
-              {field === 'resume' || field === 'offerLetter' ? (
-                data[field] ? (
-                  <a href="#" onClick={() => viewFile(data[field])} style={{textDecoration:'none'}}>
-                    View {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}
-                  </a>
-                ) : (
-                  'Not uploaded'
-                )
-              ) : field === 'photo' ? (
-                <a href="#" onClick={() => viewFile(data.photo)} style={{textDecoration:'none'}}>
-                  View Photo
-                </a>
-              ) : (
-                data[field] || 'N/A'
-              )}
+              {data[field] || 'N/A'}
             </p>
           );
         }
