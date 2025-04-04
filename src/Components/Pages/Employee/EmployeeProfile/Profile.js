@@ -467,11 +467,15 @@ function EmployeeDetails() {
       <div className={`employee-profile-content ${collapsed ? 'collapsed' : ''}`}>
         <div className='profile-container'>
           <div className='profile-header'>
-            <img
-              src={employeeData.photo}
-              alt="Employee"
-              className='profile-photo'
-            />
+            {employeeData.photo ? (
+              <img
+                src={employeeData.photo}
+                alt="Employee"
+                className='profile-photo'
+              />
+            ) : (
+              <div className='profile-photo-placeholder'>No Photo</div>
+            )}
             <div>
               <h2 className='profile-name'>{employeeData.fullName}</h2>
               <p className='profile-role'>{employeeData.role}</p>
@@ -531,7 +535,7 @@ function EditableSection({
   const handleFileChange = async (event, type) => {
     const file = event.target.files[0];
     if (!file) return;
-    
+
     try {
       if (type === 'resume' && uploadResume) {
         await uploadResume(file);
@@ -625,10 +629,10 @@ function EditableSection({
               <strong className='label'>
                 {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
               </strong>
-              <input 
-                type="file" 
-                onChange={(e) => handleFileChange(e, field)} 
-                style={inputStyles} 
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, field)}
+                style={inputStyles}
               />
             </div>
           );
@@ -636,13 +640,41 @@ function EditableSection({
           return (
             <div key={field} className='input-group'>
               <strong className='label'>Profile Photo:</strong>
-              <input 
-                type="file" 
-                accept="image/*" 
-                onChange={(e) => handleFileChange(e, 'photo')} 
-                style={inputStyles} 
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileChange(e, 'photo')}
+                style={inputStyles}
               />
             </div>
+          );
+        } else if (field === 'photo') {
+          return (
+            <p key={field} className='input-group'>
+              <strong className='label'>Profile Photo:</strong>
+              {data.photo ? (
+                <a href="#" onClick={() => viewFile(data.photo)} style={{ textDecoration: 'none' }}>
+                  View Photo
+                </a>
+              ) : (
+                'Not uploaded'
+              )}
+            </p>
+          );
+        } else if (field === 'resume' || field === 'offerLetter') {
+          return (
+            <p key={field} className='input-group'>
+              <strong className='label'>
+                {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
+              </strong>
+              {data[field] ? (
+                <a href="#" onClick={() => viewFile(data[field])} style={{ textDecoration: 'none' }}>
+                  View {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}
+                </a>
+              ) : (
+                'Not uploaded'
+              )}
+            </p>
           );
         } else if (editMode) {
           return (
@@ -664,21 +696,7 @@ function EditableSection({
               <strong className='label'>
                 {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
               </strong>
-              {field === 'resume' || field === 'offerLetter' ? (
-                data[field] ? (
-                  <a href="#" onClick={() => viewFile(data[field])} style={{textDecoration:'none'}}>
-                    View {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}
-                  </a>
-                ) : (
-                  'Not uploaded'
-                )
-              ) : field === 'photo' ? (
-                <a href="#" onClick={() => viewFile(data.photo)} style={{textDecoration:'none'}}>
-                  View Photo
-                </a>
-              ) : (
-                data[field] || 'N/A'
-              )}
+              {data[field] || 'N/A'}
             </p>
           );
         }
